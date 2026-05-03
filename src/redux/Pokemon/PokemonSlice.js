@@ -1,31 +1,41 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const pokemonLibrary = [{name: "Pikachu", element:"electric", id: nanoid()}]
-
-
 const pokemonSlice = createSlice({
-    name:"pokemons",
+  name: "Pokemons",
+  initialState: [
+  { name: "Pickachu", element: "electric", id: nanoid() },
+],
 
-    initialState: pokemonLibrary,
+  reducers: {
+    addPokemon: {
+      reducer(state, action) {
+        return [...state, action.payload];
+      },
+      prepare({name, element}) {
+        
+        return {
+          payload: {
+            id: nanoid(),
+            name: name,
+            element: element,
+          },
+        };
+      },
+    },
 
-    reducers:{
-        addPokemon: {
-            reducer(state, action){
-                state.push(action.payload);
-            }, 
+    deletePokemon: {
+      reducer(state, action) {
+        return state.filter((pokemon) => pokemon.id !== action.payload);
+      },
+      prepare(id) {
+        return {
+          payload: id,
+        };
+      },
+    },
+  },
+});
 
-            prepare(obj){
-                return {
-                    payload:{
-                        name: obj.name,
-                        element: obj.element,
-                        id: nanoid()
-                    }
-                }
-            }
-        }
-    }
+export const pokemonReducer = pokemonSlice.reducer;
 
-})
-
-export const pokemonReducer = pokemonSlice.reducer
+export const { addPokemon, deletePokemon } = pokemonSlice.actions;

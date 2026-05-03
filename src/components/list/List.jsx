@@ -1,14 +1,11 @@
 import { useSelector } from "react-redux"
-import { selectPokemon } from "../../redux/Pokemon/PokemonSelector"
 import { Item } from "../item/Item"
-import { nanoid } from "@reduxjs/toolkit"
-
+import { selectPokemon } from "../../redux/Pokemon/PokemonSelector";
 export const List = () => {
-const infoPokemon  = useSelector(selectPokemon)
-console.log(infoPokemon)
-return(
-    <>
-    {infoPokemon.map(pokemon => <Item key={pokemon.id} info={pokemon}/>)}
-    </>
-)
-} 
+    const infoPokemon = useSelector(selectPokemon)
+    console.log(infoPokemon);
+
+    return (
+        infoPokemon.map(pokemon => <Item key={pokemon.id} info={pokemon}></Item>)
+    )
+}
