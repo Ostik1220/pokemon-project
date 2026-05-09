@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchPokemons } from "./pokemonsOperation";
 
-// const initialState
+const initialState = [];
 
 const pokemonSlice = createSlice({
   name: "Pokemons",
