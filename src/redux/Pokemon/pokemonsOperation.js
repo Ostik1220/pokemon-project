@@ -31,3 +31,15 @@ export const addPokemon = createAsyncThunk(
     }
   },
 )
+
+export const deletePokemon = createAsyncThunk(
+  "pokemons/deletePokemon",
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`${baseUrl}/pokemons/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);

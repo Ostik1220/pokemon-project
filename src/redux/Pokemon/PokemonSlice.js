@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPokemons, addPokemon } from "./pokemonsOperation";
+import { fetchPokemons, addPokemon, deletePokemon } from "./pokemonsOperation";
 
 const initialState = [];
 
@@ -66,6 +66,21 @@ const pokemonSlice = createSlice({
     });
 
     builder.addCase(addPokemon.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(deletePokemon.pending, (state) => {
+      state.loading = true;
+
+    });
+
+    builder.addCase(deletePokemon.fulfilled, (state, action) => {
+      state.loading = false;
+      state.pokemons = state.pokemons.filter((pokemon) => pokemon.id !== action.payload);
+    });
+
+    builder.addCase(deletePokemon.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
