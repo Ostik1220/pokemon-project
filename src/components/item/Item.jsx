@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
-import { deletePokemon } from "../../redux/pokemon/pokemonSlice";
+// import { useDispatch } from "react-redux";
+// import { deletePokemon } from "../../redux/pokemon/pokemonSlice";
 
 export const Item = ({ info }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   console.log(info);
 
@@ -10,7 +10,7 @@ export const Item = ({ info }) => {
     <div>
       <h2>{info.name}</h2>
       <p>{info.element}</p>
-      <button onClick={() => dispatch(deletePokemon(info.id))}>Delete</button>
+      {/* <button onClick={() => dispatch(deletePokemon(info.id))}>Delete</button> */}
     </div>
   );
 };

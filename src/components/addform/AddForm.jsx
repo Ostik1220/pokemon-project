@@ -1,16 +1,21 @@
-// import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
+import { addPokemon } from "../../redux/Pokemon/pokemonsOperation";
 // import { addPokemon } from "../../redux/Pokemon/PokemonSlice"
+
 
 // console.log(addPokemon);
 
 export const AddForm = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const dataForm = (e) => {
     e.preventDefault();
 
-    // const name = e.target.elements.pokemonName.value
-    // const element = e.target.elements.pokemonElement.value
+    const name = e.target.elements.pokemonName.value
+    const element = e.target.elements.pokemonElement.value
+    dispatch(addPokemon({ name, element }))
+
+
 
     // dispatch(addPokemon({name, element}))
 
