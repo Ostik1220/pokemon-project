@@ -1,18 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { pokemonReducer } from "./pokemon/pokemonSlice";
-import storage from "redux-persist/es/storage";
 import { combineReducers } from "redux";
-
+import storage from "redux-persist/es/storage";
+import { pokemonReducer } from "./pokemon/pokemonSlice";
 
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
+  REHYDRATE,
 } from "redux-persist";
 import { filterReducer } from "./search/SearchPokemonSlice";
 
@@ -22,8 +21,7 @@ const persistConfig = {
   whitelist: ["pokemons"],
 };
 
-console.log("persistConfig",  persistConfig);
-
+console.log("persistConfig", persistConfig);
 
 const rootReducer = combineReducers({
   pokemons: pokemonReducer,
@@ -41,5 +39,7 @@ export const store = configureStore({
       },
     }),
 });
+
+console.log(store);
 
 export let persistor = persistStore(store);
